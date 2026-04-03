@@ -1,40 +1,21 @@
-## 5. Patrones de Órdenes ATM y Lecciones Aprendidas
+# 🛠️ Estrategias, Órdenes y Gestión ATM
 
-> [!IMPORTANT]
-> Esta sección recoge errores críticos y soluciones encontradas al desarrollar estrategias NinjaTrader 8 con órdenes ATM programáticas.
+Guía para el desarrollo de sistemas de ejecución (`Strategies`) usando la API de NinjaTrader 8.
 
-### 5.1 `AtmStrategyCreate` — Firma Correcta
-```csharp
-AtmStrategyCreate(
-    OrderAction action,        // Buy / SellShort
-    OrderType type,            // Limit / StopLimit / StopMarket / Market
-    double limitPrice,         // Precio límite (3er argumento)
-    double stopPrice,          // Precio stop (4to argumento)
-    TimeInForce tif,           // Day / Gtc
-    string orderId,            // GetAtmStrategyUniqueId()
-    string templateName,       // Nombre exacto de la plantilla ATM
-    string strategyId,         // GetAtmStrategyUniqueId() (otro distinto)
-    Action<ErrorCode, string> callback  // (err, id) => {}
-);
-```
+## 1. Entrada de Órdenes
+*   **Market Orders**: Rápidas pero con slippage. Usar solo en scalping de altísima volatilidad.
+*   **StopLimit**: El estándar para roturas. Define un `stopPrice` y un `limitPrice` con un pequeño offset para asegurar el llenado.
 
-### 5.2 Manejo de Errores y Tipos de Orden
-*   **Cantidad**: No se pasa por código; se define en la plantilla ATM de NT8.
-*   **Validación de Tipo**: 
-    *   **LONG**: Si entrada ≤ Close[0] → `OrderType.Limit` (pullback); si entrada > Close[0] → `OrderType.StopLimit` (rotura).
-    *   **SHORT**: Si entrada ≥ Close[0] → `OrderType.Limit` (pullback); si entrada < Close[0] → `OrderType.StopLimit` (rotura).
-*   **Error Callback**: Usar firma `(err, id) => {}` para evitar errores de compilación `CS1503`.
+## 2. Gestión de Plantillas ATM
+*   **Carga Dinámica**: Permite al usuario elegir la plantilla ATM desde el panel de propiedades mediante un `string`.
+*   **AtmStrategyCreate**: El método principal para lanzar órdenes con Stop Loss y Take Profit predefinidos.
 
-### 5.3 Arquitectura de 3 Fases (Hugin-Pattern)
-Para estrategias de rotura con riesgo controlado:
-1.  **Confirmación**: Cierre de vela por encima/debajo de nivel previo. Guarda un trigger (High[1]+2 / Low[1]-2).
-2.  **Trigger**: En tiempo real, cuando el precio toca el trigger, calcula Stop y Entrada basada en riesgo fijo (ej. 20 ticks).
-3.  **Trailing**: Sigue el mercado (mejorando precio) siempre que la distancia al swing stop sea ≤ riesgo máximo.
+## 3. Trailing de Entrada
+Técnica para mover el precio de entrada mientras el setup sigue vigente:
+*   **Long**: Si el máximo de la vela previa es menor al nivel de entrada actual, bajamos el nivel de entrada para mejorar el precio.
 
-### 5.4 Cálculos de Riesgo Fijo
-*   **Long**: `Stop = Min swing - offset`, `Entrada = Stop + RiesgoTicks`.
-*   **Short**: `Stop = Max swing + offset`, `Entrada = Stop - RiesgoTicks`.
+## 4. Estado de la Estrategia
+Siempre resetea IDs y variables al pasar de `Historical` a `Realtime` en `OnStateChange` para evitar que la estrategia intente cerrar posiciones que no existen.
 
 ---
 *NinjaMaster_NT8 - "La disciplina en la gestión es el beneficio."*
-

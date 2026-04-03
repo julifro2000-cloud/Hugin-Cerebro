@@ -7,6 +7,7 @@ Algoritmo de suavizado adaptativo que elimina el ruido sin introducir lag excesi
 *   **Fórmula Base**: Proyecta una media del precio suavizada por la volatilidad (Range).
 *   **Bandas**: Usa la desviación PI (3.14159) para crear un canal de "ruido aceptable".
 *   **Uso**: Cruce de precio con la línea o cambio de color (Giro de tendencia).
+*   **Sincronización Múltiple (Triple Genial Line)**: Se evalúa el cruce del precio contra 3 líneas simultáneamente en distintos marcos temporales (ej. 28s, 144s, 12m). Una **tendencia sincronizada** se da cuando el precio está por encima de las 3 líneas (LARGO) o por debajo de las 3 (CORTO), confirmando dirección a micro, corto y medio plazo. (Implementado en `HuginTripleGenialLineSign`).
 
 ## 2. Fib50 Retroceso (Swings Alternados)
 Detector de liquidez en niveles del 50%.
