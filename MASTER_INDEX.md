@@ -31,5 +31,8 @@ Bienvenido al núcleo de sabiduría de **NinjaMaster_NT8**. Todo el conocimiento
 ### 9. [UI/UX y Panel de Control](file:///c:/Users/Miguel/Documents/NinjaTrader%208/bin/Custom/_Hugin_Knowledge_Center/UI_UX_Standards.md)
 *Estética, Chart Trader e integración visual.*
 
+### 10. [Patrón Deepchart Overlay](file:///c:/Users/Miguel/Documents/NinjaTrader%208/bin/Custom/_Hugin_Knowledge_Center/Deepchart_Overlay_Pattern.md)
+*Arquitectura de renderizado en panel único (Footprint/Heatmaps) con SharpDX.*
+
 ---
 *NinjaMaster_NT8 - "Conocimiento completo. Operativo."*
