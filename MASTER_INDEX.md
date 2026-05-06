@@ -1,0 +1,38 @@
+# 🧠 Hugin Knowledge Center - ÍNDICE MAESTRO
+
+Bienvenido al núcleo de sabiduría de **NinjaMaster_NT8**. Todo el conocimiento centralizado bajo un estándar de desarrollo senior.
+
+## 📌 Mapa del Cerebro
+
+### 1. [Inventario de Habilidades (Skills)](Technical_Skills.md)
+*Lista de capacidades tácticas y bloques de código listos para usar.*
+
+### 2. [Estándares de Arquitectura](Arch_Standards.md)
+*Reglas de construcción, Naming y el patrón 'Guardián'.*
+
+### 3. [Optimización de Alto Rendimiento](Perf_Optimization.md)
+*Memoria, Velocidad y "Frozen Brushes".*
+
+### 4. [Gestión de Recursos y Ciclo de Vida](Resource_Management.md)
+*Prevención de fugas de memoria y serialización profesional.*
+
+### 5. [Resiliencia y Debugging](Resilience_Debugging.md)
+*Tácticas de diagnóstico y manejo de errores.*
+
+### 6. [Patrones Multi-Timeframe (MTF)](MTF_Patterns.md)
+*Sincronización de señales entre temporalidades.*
+
+### 7. [Biblioteca de Lógica Hugin](Logic_Library.md)
+*Planos maestros de GenialLine, Fib50 y VixTrigger.*
+
+### 8. [Estrategias y Gestión ATM](Strategy_Development.md)
+*Ejecución de órdenes, StopLimits y Trailing.*
+
+### 9. [UI/UX y Panel de Control](UI_UX_Standards.md)
+*Estética, Chart Trader e integración visual.*
+
+### 10. [Patrón Deepchart Overlay](Deepchart_Overlay_Pattern.md)
+*Arquitectura de renderizado en panel único (Footprint/Heatmaps) con SharpDX.*
+
+---
+*NinjaMaster_NT8 - "Conocimiento completo. Operativo."*
